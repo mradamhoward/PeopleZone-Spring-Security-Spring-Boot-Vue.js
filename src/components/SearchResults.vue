@@ -112,7 +112,7 @@ export default {
             this.getData();       
         },
         getData(){
-            axios.get("http://localhost:8082/search?toSearch=" + this.$route.query.toSearch + "&attr=all&page=" + this.page + "&numResults=" + this.numResults + "&sortBy=" + this.sortBy + "&ascending=" + this.ascending,  { headers: authHeader()}).then(response => {
+            axios.get("http://localhost:8082/search?q=" + this.$route.query.q+ "&page=" + this.page + "&numResults=" + this.numResults + "&sortBy=" + this.sortBy + "&ascending=" + this.ascending,  { headers: authHeader()}).then(response => {
                 this.persons = response.data;
             });    
         },

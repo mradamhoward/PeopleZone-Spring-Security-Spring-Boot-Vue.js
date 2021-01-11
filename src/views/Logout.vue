@@ -10,7 +10,7 @@ export default {
         };
     }, 
     mounted(){
-        this.$store.commit('auth/logout');
+        this.$store.dispatch('auth/logout');
         this.$router.push('/');
     }   
 }

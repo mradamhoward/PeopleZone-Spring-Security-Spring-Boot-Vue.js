@@ -53,7 +53,7 @@ export default {
 
     methods: {
         submitForm(){
-            this.$router.push({ path: '/search', query : { toSearch : this.searchText, attr: this.attribute}})
+            this.$router.push({ path: '/search', query : { q : this.searchText}})
         }
     }
 }

@@ -6,6 +6,7 @@ import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Logout from '../views/Logout.vue';
 import PersonViewMore from '../components/PersonViewMore.vue';
+import AddPerson from '../components/AddPerson.vue';
 
 const routes = [
   {
@@ -48,6 +49,12 @@ const routes = [
       path: '/person/:personId',
       name: 'viewMore',
       component: PersonViewMore
+    }
+    ,
+    {
+      path: '/person/add',
+      name: 'addPerson',
+      component: AddPerson
     }
 ]
 

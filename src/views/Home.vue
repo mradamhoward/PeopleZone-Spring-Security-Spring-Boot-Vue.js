@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <header class="jumbotron">
-      <h3>{{content}}</h3>
+      <h2>To begin, search for someone in the search bar above or create a new user below.</h2>
+      <button class="addPerson" @click="addPerson()">Add Person</button>
     </header>
   </div>
 </template>
@@ -15,6 +16,11 @@ export default {
     return {
       content: ''
     };
+  },
+  methods: {
+    addPerson(){
+      this.$router.push('/person/add');
+  }
   },
   mounted() {
     UserService.getPublicContent().then(
@@ -31,3 +37,29 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+header{
+  width: 80%;
+  height: 600px;
+  background-color: #ccc;
+  display: block;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+h2{
+  text-align: center;
+}
+
+.addPerson{
+  width: 200px;
+  height: 30px;
+  background-color: blue;
+  display: block;
+  margin: 0 auto;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+</style>
