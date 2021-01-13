@@ -1,7 +1,42 @@
 <template>
+<div class="click-handle" >
     <nav>
+    <a class="brand" @click="sideDrawerToggle"><i class="fa fa-bars"></i></a>
     <div class="width-corrector"><router-link to="/" class="brand">PeopleZone</router-link></div>
-    
+    <div class="sidedrawer" v-if="sideDrawer">
+        <div class="hamholder"> <a class="side-ham" @click="sideDrawerToggle"><i class="fa fa-times"></i></a>
+   </div>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+        <router-link to="/" class="side-item">Vue.js</router-link>
+        <router-link to="/" class="side-item">Spring Boot</router-link>
+        <router-link to="/" class="side-item">CSS</router-link>
+    </div>
     <div class="search-group">
         <form @submit.prevent="submitForm">        
         <input type="text" class="searchBox" placeholder="Search for people" v-model="searchText" v-on:keyup.enter="submitForm">
@@ -32,12 +67,22 @@
     </div>
     <div class="width-corrector">
     <div class="account">
-        <router-link to="/profile" class="link"><i class="fa fa-user"></i></router-link>
+       <!-- <router-link to="/profile" class="link"><i class="fa fa-user"></i></router-link>    
         <router-link to="/login" class="link">Login</router-link>
-        <router-link to="/register" class="link">Sign Up</router-link>
+        <router-link to="/register" class="link">Sign Up</router-link>-->
+        <a class="accountbtn link" @click="showAccountMenu()"><i class="fa t" :class="showMenu ? 'fa-times' : 'fa-user'"></i></a>
+        <div class="menu" v-if="showMenu" >
+            <router-link to="/login" v-if="!loggedIn" class="menu-item green" @click="closeMenu()">Login</router-link>
+            <router-link to="/register" v-if="!loggedIn" class="menu-item green" @click="closeMenu()">Sign up</router-link>
+            <router-link to="/profile" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Profile</router-link>
+            <router-link to="/person/add" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Add Person</router-link>
+            <router-link to="/upload/file" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Upload File</router-link>
+            <router-link to="/logout" v-if="loggedIn" class="menu-item red" @click="closeMenu()">Logout</router-link>
+        </div>
     </div>
     </div>
 </nav>
+</div>
 </template>
 
 <script>
@@ -46,20 +91,138 @@ export default {
     data(){
         return {
             searchText: '',
-            attribute: 'all'
+            attribute: 'all',
+            showMenu: false,
+            sideDrawer: false
         };
     },
-   
+   computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
 
     methods: {
         submitForm(){
             this.$router.push({ path: '/search', query : { q : this.searchText}})
+            this.sideDrawer = false;
+            this.closeMenu();
+        },
+        showAccountMenu(){
+            this.showMenu = !this.showMenu;
+        },
+        closeMenu(){
+            this.showMenu = false;
+        },
+        sideDrawerToggle(){
+            this.sideDrawer = !this.sideDrawer;
         }
     }
 }
 </script>
 
 <style scoped>
+@keyframes example {
+  0%   {left: -200px;}
+  25%  {left: -150px;}
+  50%  {left: -100px;}
+  75% {left: -50px;}
+  100% {left: 0px;}
+}
+.sidedrawer{
+    width: 200px;
+    height: 100vh;
+    background-color: #ccc;
+    position: fixed;
+    left: 0;
+    top: 0px;
+    overflow-y: scroll;
+    animation: bubble 1.0s forwards;
+    animation-name: example;
+    animation-duration: .2s;
+    animation-timing-function: linear;
+}
+
+.hamholder{
+    width: 100%;
+    height: 75px;
+    top: 0px;
+    background-color: darkblue;
+}
+.side-ham{
+    display: block;
+    margin-left: 40px;
+    text-decoration: none;
+    font-size: 14pt;
+    font-family: Arial;
+    color: white;
+    padding: 0;
+    line-height: 75px;
+}
+
+.sidedrawer::-webkit-scrollbar {
+    width: 12px;
+}
+.sidedrawer::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);      
+}
+.sidedrawer::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.side-item{
+    display: block;
+    width: 100% - 30px;
+    height: 40px;
+    background-color:cornflowerblue;
+    color: white;
+    text-decoration: none;
+    line-height: 2.5;
+    padding-left: 30px;
+}
+.side-item:hover{
+    background-color: #bbb;
+}
+.menu{
+    height: 160px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: darkgray;
+    position: fixed;
+    right: 90px;
+    top: 80px;
+}
+
+.green{
+  background-color: cornflowerblue;
+}
+
+.red{
+  background-color: red;
+}
+
+.accountbtn{
+    margin: 6px 35px 10px 0px !important; 
+   
+}
+.t{
+ font-size: 24pt;
+}
+.menu-item{
+    text-decoration: none;
+    line-height: 2.5;
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-radius: 2px; 
+    display: block;
+}
+
+.menu-item:hover{
+    background-color: grey;
+}
 
 form{
     width: 100%;
@@ -80,7 +243,7 @@ nav {
 
 .searchBox{
     width: 100%;
-    height: 45px;
+    height: 46px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -90,7 +253,11 @@ nav {
     background-position: 10px 10px; 
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
-     vertical-align:middle;
+    vertical-align:middle;
+    border-radius: 23px;
+}
+input.searchBox:focus{
+    outline-width: 0;
 }
 
 select {

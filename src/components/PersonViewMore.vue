@@ -45,10 +45,10 @@
                 <input type="date" class="form-control width" v-model="dateFormat" />
                 <input type="text" class="form-control width" :placeholder="'Address: ' + person.homeAddress" v-model="person.homeAddress"/>
                 <input type="text" maxlength="200" class="form-control width" :placeholder="'Description: ' + person.description" v-model="person.description"/>
-                <label for="genderB">Gender: </label>
-                <input type="checkbox" class="" id="genderB" name="genderB"  v-model="genderBoolean" />
+                <div class="f"><label for="genderB">Gender: </label>
+                <input type="checkbox" class="c" id="genderB" name="genderB"  v-model="genderBoolean" />
                  <label for="driver">Drivers Licence: </label>
-                <input type="checkbox" class="" id="driver" :value="person.driversLicence" name="driverCheck" v-model="person.driversLicence"/>
+                <input type="checkbox" class="c" id="driver" :value="person.driversLicence" name="driverCheck" v-model="person.driversLicence"/></div>
                 <input type="email" class="form-control width" :placeholder="'Email: ' +person.emailAddress" v-model="person.emailAddress"/>
                 <input type="tel" class="form-control width" :placeholder="'Phone: ' +person.phoneNumber" v-model="person.phoneNumber"/>
                 <input type="url" class="form-control width" :placeholder="'Website: ' + person.websiteAddress" v-model="person.websiteAddress"/>
@@ -64,6 +64,7 @@
                 <input type="text" class="form-control width" :placeholder="'Image URL: ' +person.image" v-model="person.image"/>
                 <button type="submit" class="btn-block">Update</button>
                 <button type="button" class="btn-block red" @click="deletePerson(person.id)">Delete</button>
+                <button type="button" class="btn-block" @click="exportPerson(person.id)">Export</button>
             </form>
             
         </div>
@@ -182,7 +183,18 @@ export default {
                 }
             })
            
-        }
+        },
+        exportPerson(id){
+            console.log(id);
+            axios.get("http://localhost:8082/exportPerson?id=" + id, { headers: authHeader(), }).then(response => {
+                if(response.status == 200){
+                    window.location.replace("http://localhost:8082/" + response.data)
+                } else {
+                    alert('failed');
+                }
+            })
+           
+        },
     },
     created(){
         this.getPerson();
@@ -204,13 +216,25 @@ p{
 .btn-block{
     display: block;
     width: 345px;
-    margin: 2px 0;
+    margin: 2px auto;
     background-color: green;
     color: white;
     border: none;
     border-radius: 3px;
     height: 30px;
 }
+.c, label{
+    display: block;
+    margin-left: 25px !important;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    
+}
+
+.f{
+    display: flex;
+}
+
 .red{
     background-color: red;
 }
@@ -239,6 +263,7 @@ p{
     flex-wrap: wrap;
     gap: 0;
     max-height: 600px;
+    border-radius: 3px;
 }
 
 h5{
@@ -253,9 +278,14 @@ h3{
     padding: 0;
 }
 
+input[type=checkbox]{
+    margin-left: 15px;
+}
+
 .right{
     width: 30%;
     height: 100%;
+    border-radius: 3px;
 }
 .person-img{
     height: 300px;
@@ -263,6 +293,11 @@ h3{
     display: block; 
 
    
+}
+
+.form-control{
+    margin-left: auto;
+    margin-right: auto;
 }
 .container{
     width: 800px;
@@ -278,7 +313,7 @@ h3{
     padding: 15px;
     background-color: #ccc;
     display: block;
-  
+      border-radius: 3px;
 }
 
 form{

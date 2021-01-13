@@ -1,12 +1,9 @@
 <template>
-<h2>Register</h2>
+
   <div class="col-md-12">
     <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
+      <h2>Sign Up</h2>
+
       <form name="form" @submit.prevent="handleRegister">
         <div v-if="!successful">
           <div class="form-group">
@@ -62,7 +59,11 @@
         v-if="message"
         class="alert"
         :class="successful ? 'alert-success' : 'alert-danger'"
-      >{{message}}</div>
+      >{{message}}
+      </div>
+
+   
+
     </div>
   </div>
 </template>
@@ -99,6 +100,7 @@ export default {
             data => {
               this.message = data.message;
               this.successful = true;
+              this.$router.push('/login');
             },
             error => {
               this.message =
@@ -124,6 +126,23 @@ label {
   padding: 40px 40px;
 }
 
+h2{
+  text-align: center;
+  color: black;
+}
+
+.link{
+  width: 80px;
+  border-radius: 3px;
+  margin: 0 auto;
+  background-color: red;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  color: white;
+}
+
+
 .card {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
@@ -146,4 +165,16 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+.btn-primary {
+  width: 100%;
+  height: 35px;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  margin-top: 10px;
+}
+
+
 </style>

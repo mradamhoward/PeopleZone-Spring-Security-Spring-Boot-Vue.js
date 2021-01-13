@@ -1,11 +1,8 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
+      <h2>Sign In</h2>
+  
       <form name="form" @submit.prevent="handleLogin">
         <div class="form-group">
           <label for="username">Username</label>
@@ -126,5 +123,17 @@ label {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+}
+h2{
+  text-align: center;
+}
+.btn-primary {
+  width: 100%;
+  height: 35px;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  margin-top: 10px;
 }
 </style>

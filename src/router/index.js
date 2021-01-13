@@ -7,6 +7,7 @@ import Register from '../views/Register.vue';
 import Logout from '../views/Logout.vue';
 import PersonViewMore from '../components/PersonViewMore.vue';
 import AddPerson from '../components/AddPerson.vue';
+import UploadFiles from '../components/UploadFiles.vue';
 
 const routes = [
   {
@@ -55,7 +56,15 @@ const routes = [
       path: '/person/add',
       name: 'addPerson',
       component: AddPerson
-    }
+    ,
+  },
+  {
+    path: '/upload/file',
+    name: 'fileUpload',
+    component: UploadFiles
+  }
+
+
 ]
 
 const router = createRouter({

@@ -197,7 +197,6 @@ export default {
     background-color: #f2f2f2;
     padding: 0 15px;
     border-bottom: 1px solid grey;
-    box-shadow: 0 8px 6px -6px #ccc;
 }
 
 .grid{

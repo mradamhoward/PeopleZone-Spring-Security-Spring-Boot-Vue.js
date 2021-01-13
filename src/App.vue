@@ -44,7 +44,7 @@ export default {
 }
 
 body{
-  background-color: lightblue;
+  background-color: #0d3744;
 }
 
 #nav {
@@ -67,7 +67,7 @@ body{
 
 .form-control {
   display: block;
-  width: 100%;
+  width: 92%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;

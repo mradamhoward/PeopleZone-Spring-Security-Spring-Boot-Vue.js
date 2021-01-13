@@ -3,19 +3,26 @@
         <div class="person-more-wrapper green">
             <h3 class="center">Add Person</h3>
             <form @submit.prevent="createPerson">
-                <input type="text" class="form-control width" :placeholder="'First name: ' + person.firstName" v-model="person.firstName"/>
+                <div class="left">
+                    
+                 <input type="text" class="form-control width" :placeholder="'First name: ' + person.firstName" v-model="person.firstName"/>
                 <input type="text" class="form-control width" :placeholder="'Surname: ' + person.surName" v-model="person.surName"/>
                 <input type="number" class="form-control width" :placeholder="'Age: ' +person.age" v-model="person.age"/>
                 <input type="date" class="form-control width" v-model="dateFormat" />
                 <input type="text" class="form-control width" :placeholder="'Address: ' + person.homeAddress" v-model="person.homeAddress"/>
                 <input type="text" maxlength="200" class="form-control width" :placeholder="'Description: ' + person.description" v-model="person.description"/>
-                <label for="genderB" class="check">Gender: </label>
-                <input type="checkbox" class="check" id="genderB" name="genderB"  v-model="genderBoolean" />
-                 <label for="driver" class="check">Drivers Licence: </label>
-                <input type="checkbox" class="check" id="driver" :value="person.driversLicence" name="driverCheck" v-model="person.driversLicence"/>
+                
+                
                 <input type="email" class="form-control width" :placeholder="'Email: ' +person.emailAddress" v-model="person.emailAddress"/>
                 <input type="tel" class="form-control width" :placeholder="'Phone: ' +person.phoneNumber" v-model="person.phoneNumber"/>
                 <input type="url" class="form-control width" :placeholder="'Website: ' + person.websiteAddress" v-model="person.websiteAddress"/>
+                <label for="genderB" class="check">Gender: </label>
+                <input type="checkbox" class="check" id="genderB" name="genderB"  v-model="genderBoolean" />
+                 <label for="driver" class="check">Drivers Licence: </label>
+                 <input type="checkbox" class="check" id="driver" :value="person.driversLicence" name="driverCheck" v-model="person.driversLicence"/>
+                </div>
+                <div class="right">
+                
                 <input type="text" class="form-control width" :placeholder="'Qualification: ' + person.highestEducationQualification" v-model="person.highestEducationQualification"/>
                 <input type="text" class="form-control width" :placeholder="'Occupation: ' +person.occupation" v-model="person.occupation"/>
                 <input type="text" class="form-control width" :placeholder="'Employer: ' +person.employer" v-model="person.employer"/>
@@ -27,6 +34,9 @@
                
                 <input type="text" class="form-control width" :placeholder="'Image URL: ' +person.image" v-model="person.image"/>
                 <button type="submit" class="btn-block">Create</button>
+                </div>
+               
+               
             </form>
             
         </div>
@@ -96,26 +106,43 @@ export default {
 </script>
 
 <style scoped>
-.person-more-wrapper{
+form{
+    display: flex;
     width: 100%;
-    height: 1550px;
-    margin: 10px;
-    padding: 15px;
-    background-color: #ccc;
-    display: block;
+    margin: 0 auto;
 }
+.person-more-wrapper{
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    display: block; 
+    background-color: #ccc;
+}
+.right{
+    width: 48%;
+    height: 600px;
+    margin-right: auto;
+}
+
+.left{
+    margin-left:auto;
+    width: 48%;
+    height: 700px;
+}
+
 .form-control{
-    width: 40%;
+    width: 90%;
     display: block;
-    margin: 2px auto;
+    margin: 5px auto;
 }
 .check{
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
+    margin-left: 20px;
 }
 .btn-block{
     display: block;
-    width: 40%;
+    width: 90%;
     margin: 2px auto;
     background-color: green;
     color: white;
@@ -127,8 +154,10 @@ export default {
 
 label{
     text-align: center;
+    color: black;
 }
 h3{
     text-align: center;
+    color: black;
 }
 </style>
