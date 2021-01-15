@@ -71,10 +71,14 @@
         <router-link to="/login" class="link">Login</router-link>
         <router-link to="/register" class="link">Sign Up</router-link>-->
         <a class="accountbtn link" @click="showAccountMenu()"><i class="fa t" :class="showMenu ? 'fa-times' : 'fa-user'"></i></a>
-        <div class="menu" v-if="showMenu" >
+        <div class="menu" v-if="showMenu" :class="loggedIn ? 'menu' : 'menuout'">
             <router-link to="/login" v-if="!loggedIn" class="menu-item green" @click="closeMenu()">Login</router-link>
             <router-link to="/register" v-if="!loggedIn" class="menu-item green" @click="closeMenu()">Sign up</router-link>
-            <router-link to="/profile" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Profile</router-link>
+            <router-link to="/" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Home</router-link>
+            <router-link to="/pay" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Pay</router-link>
+            <router-link to="/search?q=" v-if="loggedIn" class="menu-item green" @click="closeMenu()">All Persons</router-link>
+            <router-link to="/register" v-if="loggedIn" class="menu-item red" @click="closeMenu()">Sign Up</router-link>
+             <router-link to="/profile" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Profile</router-link>
             <router-link to="/person/add" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Add Person</router-link>
             <router-link to="/upload/file" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Upload File</router-link>
             <router-link to="/logout" v-if="loggedIn" class="menu-item red" @click="closeMenu()">Logout</router-link>
@@ -116,6 +120,7 @@ export default {
         },
         sideDrawerToggle(){
             this.sideDrawer = !this.sideDrawer;
+            this.showMenu = false;
         }
     }
 }
@@ -142,6 +147,8 @@ export default {
     animation-duration: .2s;
     animation-timing-function: linear;
 }
+
+.sidedrawer
 
 .hamholder{
     width: 100%;
@@ -181,27 +188,34 @@ export default {
     text-decoration: none;
     line-height: 2.5;
     padding-left: 30px;
+    border-bottom: 1px solid darkgrey;
 }
 .side-item:hover{
     background-color: #bbb;
 }
 .menu{
-    height: 160px;
+    height: 320px;
     width: 200px;
     border-radius: 5px;
-    background-color: darkgray;
+    background-color: white;
     position: fixed;
-    right: 90px;
+    right: 10px;
     top: 80px;
+    border: 1px solid darkgray;
 }
 
-.green{
-  background-color: cornflowerblue;
+.menuout{
+    height: 80px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: white;
+    position: fixed;
+    right: 10px;
+    top: 80px;
+    border: 1px solid darkgray;
 }
 
-.red{
-  background-color: red;
-}
+
 
 .accountbtn{
     margin: 6px 35px 10px 0px !important; 
@@ -214,14 +228,21 @@ export default {
     text-decoration: none;
     line-height: 2.5;
     width: 100%;
-    color: white;
+    color: black;
     text-align: center;
     border-radius: 2px; 
     display: block;
 }
 
+
+
 .menu-item:hover{
-    background-color: grey;
+    background-color: blue;
+    color: white;
+}
+
+.menu-item a:hover{
+   
 }
 
 form{

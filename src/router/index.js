@@ -8,6 +8,7 @@ import Logout from '../views/Logout.vue';
 import PersonViewMore from '../components/PersonViewMore.vue';
 import AddPerson from '../components/AddPerson.vue';
 import UploadFiles from '../components/UploadFiles.vue';
+import Pay from '../components/Pay.vue';
 
 const routes = [
   {
@@ -16,7 +17,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: SearchResults
+    component: SearchResults,
+    meta: { requiredAuth: true }
   },
   {
       path: '/',
@@ -70,9 +72,13 @@ const routes = [
     name: 'fileUpload',
     component: UploadFiles,
     meta: { requiredAuth: true }
-  }
-
-
+  },
+  {
+    path: '/pay',
+    name: 'pay',
+    component: Pay,
+    meta: { requiredAuth: false }
+  },
 ]
 
 const router = createRouter({

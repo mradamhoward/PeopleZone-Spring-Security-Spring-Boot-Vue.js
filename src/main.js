@@ -8,18 +8,12 @@ import VueParticles from 'vue-particles';
 var app = createApp(App);
 
 router.beforeEach((to, from, next) => {
-    if(to.path !== '/login' && to.meta.requiredAuth && !store.getters.isAuthenticated){
+    console.log(store.state.auth.status.loggedIn);
+    if(to.path != '/login' && to.meta.requiredAuth && !store.state.auth.status.loggedIn){
         next('/login');
-        return
-    } else if (from.path === '/login' && to.meta.requiredAuth && store.getters.isAuthenticated){
+    } else if (from.path == '/login' && to.meta.requiredAuth && store.state.auth.status.loggedIn){
+        console.log('this hit')
         next();
-        return
-    } else if (!to.meta.requiredAuth && store.getters.isAuthenticated){
-        next();
-        return
-    } else if (to.meta.requiredAuth && store.getters.isAuthenticated){
-        next();
-        return
     } else {
         next();
     }
