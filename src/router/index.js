@@ -21,47 +21,55 @@ const routes = [
   {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: { requiredAuth: false }
     },
     {
       path: '/home',
-      component: Home
+      component: Home,
+      meta: { requiredAuth: false }
     },
     {
       path: '/login',
-      component: Login
+      component: Login,
+      meta: { requiredAuth: false }
     },
     {
       path: '/register',
-      component: Register
+      component: Register,
+      meta: { requiredAuth: false }
     },
     {
       path: '/profile',
       name: 'profile',
       // lazy-loaded
-      component: () => import('../views/Profile.vue')
+      component: () => import('../views/Profile.vue'),
+      meta: { requiredAuth: true }
     },
     {
       path: '/logout',
       name: 'logout',
-      component: Logout
+      component: Logout,
+      meta: { requiredAuth: true }
     },
     {
       path: '/person/:personId',
       name: 'viewMore',
-      component: PersonViewMore
-    }
-    ,
+      component: PersonViewMore,
+      meta: { requiredAuth: true }
+    },
     {
       path: '/person/add',
       name: 'addPerson',
-      component: AddPerson
+      component: AddPerson,
+      meta: { requiredAuth: true }
     ,
   },
   {
     path: '/upload/file',
     name: 'fileUpload',
-    component: UploadFiles
+    component: UploadFiles,
+    meta: { requiredAuth: true }
   }
 
 
