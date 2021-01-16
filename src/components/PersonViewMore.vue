@@ -45,14 +45,15 @@
                 <input type="date" class="form-control width" v-model="dateFormat" />
                 <input type="text" class="form-control width" :placeholder="'Address: ' + person.homeAddress" v-model="person.homeAddress"/>
                 <input type="text" maxlength="200" class="form-control width" :placeholder="'Description: ' + person.description" v-model="person.description"/>
-                <div class="f"><label for="genderB">Gender: </label>
-                <input type="checkbox" class="c" id="genderB" name="genderB"  v-model="genderBoolean" />
-                 <label for="driver">Drivers Licence: </label>
-                <input type="checkbox" class="c" id="driver" :value="person.driversLicence" name="driverCheck" v-model="person.driversLicence"/></div>
+                
                 <input type="email" class="form-control width" :placeholder="'Email: ' +person.emailAddress" v-model="person.emailAddress"/>
                 <input type="tel" class="form-control width" :placeholder="'Phone: ' +person.phoneNumber" v-model="person.phoneNumber"/>
                 <input type="url" class="form-control width" :placeholder="'Website: ' + person.websiteAddress" v-model="person.websiteAddress"/>
                 <input type="text" class="form-control width" :placeholder="'Qualification: ' + person.highestEducationQualification" v-model="person.highestEducationQualification"/>
+                <div class="f"><label for="genderB">Gender: </label>
+                <input type="checkbox" class="c" id="genderB" name="genderB"  v-model="genderBoolean" />
+                 <label for="driver">Drivers Licence: </label>
+                <input type="checkbox" class="c" id="driver" :value="person.driversLicence" name="driverCheck" v-model="person.driversLicence"/></div>
                 <input type="text" class="form-control width" :placeholder="'Occupation: ' +person.occupation" v-model="person.occupation"/>
                 <input type="text" class="form-control width" :placeholder="'Employer: ' +person.employer" v-model="person.employer"/>
                 <input type="text" class="form-control width" :placeholder="'College: ' +person.college" v-model="person.college"/>
@@ -226,7 +227,6 @@ p{
 .c, label{
     display: block;
     margin-left: 25px !important;
-    border-radius: 10px;
     margin-bottom: 5px;
     
 }
@@ -281,8 +281,18 @@ h3{
 input[type=checkbox]{
     margin-left: 15px;
 }
+
+input[type=text],input[type=date]{
+    font-size: 1rem;
+}
+
+input[type=text]:focus, input[type=date]:focus, input[type=url]:focus,input[type=number]:focus,input[type=email]:focus,input[type=tel]:focus{
+    outline-width: 0;
+    border: 2px solid purple;
+}
+
 input{
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;        
 }
 .right{
     width: 30%;

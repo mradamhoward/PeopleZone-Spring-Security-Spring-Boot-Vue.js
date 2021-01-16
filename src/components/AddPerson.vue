@@ -125,6 +125,12 @@ form{
     margin-right: auto;
 }
 
+input[type=text]:focus, input[type=date]:focus, input[type=url]:focus,input[type=number]:focus,input[type=email]:focus,input[type=tel]:focus{
+    outline-width: 0;
+      border: 2px solid purple;
+}
+
+
 .left{
     margin-left:auto;
     width: 48%;
