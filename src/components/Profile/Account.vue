@@ -90,4 +90,8 @@ ul.roles{
     height: 25px;
     padding-left: 10px;
 }
+
+input{
+    font-family: 'Lato', sans-serif;
+}
 </style>

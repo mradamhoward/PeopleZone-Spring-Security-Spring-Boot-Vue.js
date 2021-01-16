@@ -161,10 +161,14 @@ export default {
     margin-left: 40px;
     text-decoration: none;
     font-size: 14pt;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
     color: white;
     padding: 0;
     line-height: 75px;
+}
+
+input{
+    font-family: 'Lato', sans-serif;
 }
 
 .sidedrawer::-webkit-scrollbar {
@@ -308,7 +312,7 @@ select {
     margin: 10px 0px 10px 35px;
     text-decoration: none;
     font-size: 14pt;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
     color: white;
 }
 

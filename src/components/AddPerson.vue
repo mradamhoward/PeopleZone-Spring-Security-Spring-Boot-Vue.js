@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="contain">
         <div class="person-more-wrapper green">
             <h3 class="center">Add Person</h3>
             <form @submit.prevent="createPerson">

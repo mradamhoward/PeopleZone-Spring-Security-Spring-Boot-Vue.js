@@ -4,6 +4,7 @@ import App from './App.vue'
 import TheNav from './components/TheNav.vue'
 import  { store } from './store/index.js';
 import VueParticles from 'vue-particles';
+import './index.css'
 
 var app = createApp(App);
 

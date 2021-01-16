@@ -60,14 +60,16 @@
 </div>
 
      
-<div class="pagination">
-    <div class="pagination-link-wrapper"> <a href="#">&laquo;</a>
-        <a @click="changePage(0)">1</a>
-        <a @click="changePage(1)">2</a>
-        <a @click="changePage(2)">3</a>
-        <a @click="changePage(3)">4</a>
-        <a @click="changePage(4)">5</a>
-        <a href="#">&raquo;</a></div>
+<div class="pagination" v-if="showPagination">
+    <div class="pagination-link-wrapper"> 
+        
+        <a @click="decreasePage">&laquo;</a>
+        <a @click="changePage(getPaginitionIndex - 1 )" :class="getPaginitionIndex == (page + 1) ? 'act' : 'none'">{{ getPaginitionIndex }}</a>
+        <a @click="changePage(getPaginitionIndex )" :class="(getPaginitionIndex + 1) == (page + 1) ? 'act' : 'none'">{{ getPaginitionIndex + 1 }}</a>
+        <a @click="changePage(getPaginitionIndex + 1 )" :class="(getPaginitionIndex + 2) == (page + 1) ? 'act' : 'none'">{{ getPaginitionIndex + 2 }}</a>
+        <a @click="changePage(getPaginitionIndex + 2)" :class="(getPaginitionIndex + 3) == (page + 1) ? 'act' : 'none'">{{ getPaginitionIndex + 3 }}</a>
+        <a @click="changePage(getPaginitionIndex + 3)" :class="(getPaginitionIndex + 4) == (page + 1) ? 'act' : 'none'">{{ getPaginitionIndex + 4 }}</a>
+        <a @click="increasePage">&raquo;</a></div>
    
   </div>
 
@@ -90,9 +92,11 @@ export default {
             page: 0,
             toSearch: '',
             attr: 'all',
-            numResults: 16,
+            numResults: 20,
             sortBy: 'firstName',
-            ascending: true
+            ascending: true,
+            pageinationIndex: 1,
+            showPagination: true
         };
     },
     watch: {
@@ -105,7 +109,16 @@ export default {
     },
     methods: {
         changePage(page){
-            this.page = page;
+            if(page > 0){
+                this.page = page;
+                this.pageinationIndex = page;
+            } else if(page == 0) {
+                this.page = 0;
+                this.pageinationIndex = 1;
+            }
+                
+
+           
             this.getData();
         },
          changeNumResults(){
@@ -114,11 +127,54 @@ export default {
         getData(){
             axios.get("http://localhost:8082/search?q=" + this.$route.query.q+ "&page=" + this.page + "&numResults=" + this.numResults + "&sortBy=" + this.sortBy + "&ascending=" + this.ascending,  { headers: authHeader()}).then(response => {
                 this.persons = response.data;
-            });    
+            }).then(() => {
+                this.showPaginationCalc();  
+            }); 
+            
         },
         viewMore(id){
             this.$router.push("/person/" + id);
+        }, 
+        increasePage(){
+            this.page = this.page + 1;
+            this.pageinationIndex = this.page;
+            this.getData();
+        },
+        decreasePage(){
+            if(this.page > 1){
+                this.page = this.page - 1;
+                this.pageinationIndex = this.page;
+            } else if(this.page == 0) {
+                this.pageinationIndex = 1;
+                this.page = 0;
+            } else if(this.page == 1){
+                this.pageinationIndex = 1;
+                this.page = 0;
+            }
+            this.getData();
+        },
+        showPaginationCalc(){
+            if(this.persons.length < this.numResults){
+                this.showPagination = false;
+            } else {
+                this.showPagination = true;
+            }
         }
+    }, 
+    computed: {
+        getPaginitionIndex(){
+            if(this.page >= 2) {
+                return this.pageinationIndex - 1;
+            } else if(this.page == 0){
+                return this.pageinationIndex 
+            } else if(this.page == 1){
+                return this.pageinationIndex 
+            } else {
+                return this.pageinationIndex;
+            }
+        },
+
+        
     }
 }
     </script>
@@ -142,6 +198,10 @@ export default {
     padding: 12px 20px 12px 20px; 
 }
 
+.act{
+    background-color: grey !important;
+}
+
 #sort{
      margin-right: auto;
 }
@@ -153,7 +213,7 @@ export default {
 }
     .pagination {
     display: inline-block;
-    margin: 350px auto 0 auto;
+    margin: 50px auto 0 auto;
     width: 100%;
   }
 
@@ -174,7 +234,7 @@ export default {
     float: left;
     padding: 8px 16px;
     text-decoration: none;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
     border: 1px solid #ddd;
     background-color: blue;
   }
@@ -191,14 +251,19 @@ export default {
     height: 300px;
     border-radius: 5px;
     padding: 0 15px;
-    border: 1px solid grey;
 }
+
+
+#pageDisplay{
+    text-align: center;
+    color: white;
+    }
 
 
   @media only screen and (max-width: 768px){
       .grid{
     width: 98%;
-    height: 100%;
+    height: auto;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto;
@@ -213,7 +278,6 @@ export default {
     width: 800px;
     margin-right: auto;
     }
-
 
   label{
       color: white;
@@ -237,7 +301,7 @@ export default {
   @media only screen and (min-width: 769px){
       .grid{
     width: 98%;
-    height: 100%;
+    height: auto;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: auto;
@@ -271,13 +335,17 @@ export default {
   }
   }
 
+  .grid{
+      border-top: 2px solid grey;
+  }
+
     @media only screen and (min-width: 1200px){
       .grid{
     width: 98%;
-    height: 100%;
+    height: auto;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 25% 25% 25% 25%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
     gap: 5px;
     margin: 0 auto;
 }
@@ -297,30 +365,33 @@ export default {
 .firstName{
 
 font-size: 14pt;
-font-family: Arial;
+font-family: 'Lato', sans-serif;
 }
 
 .surName{
 
     font-size: 14pt;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
 }
 .age {
     line-height: normal;
     font-size: 12pt;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
 }
 .gender{
     margin-block-start: 0%;
     margin-block-end: 0%;
     line-height: normal;
     font-size: 12pt;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
 }
 .home-address{
     line-height: normal;
     font-size: 12pt;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
 }
 
 .flex-wrapper{
@@ -343,7 +414,7 @@ justify-content: flex-end;
     height: 28px;
     background-color: darkblue;
     color: white;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
     border-radius: 5px;
     border: none;
     padding: 4px;

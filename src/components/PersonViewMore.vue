@@ -281,7 +281,9 @@ h3{
 input[type=checkbox]{
     margin-left: 15px;
 }
-
+input{
+    font-family: 'Lato', sans-serif;
+}
 .right{
     width: 30%;
     height: 100%;

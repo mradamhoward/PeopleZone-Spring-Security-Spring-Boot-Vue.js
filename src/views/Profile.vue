@@ -113,7 +113,7 @@ list-style: none;
 }
 
 ul, p, h3{
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 a.router-link-active{
