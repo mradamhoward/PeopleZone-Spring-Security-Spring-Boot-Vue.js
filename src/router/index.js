@@ -9,6 +9,11 @@ import PersonViewMore from '../components/PersonViewMore.vue';
 import AddPerson from '../components/AddPerson.vue';
 import UploadFiles from '../components/UploadFiles.vue';
 import Pay from '../components/Pay.vue';
+import Account from '../components/Profile/Account.vue';
+import Privacy from '../components/Profile/Privacy.vue';
+import Settings from '../components/Profile/Settings.vue';
+import Data from '../components/Profile/Data.vue';
+import Advanced from '../components/Profile/Advanced.vue'
 
 const routes = [
   {
@@ -46,6 +51,30 @@ const routes = [
       name: 'profile',
       // lazy-loaded
       component: () => import('../views/Profile.vue'),
+      children: [
+        {
+          path: 'account',
+          components: {
+            p: Account 
+          }
+        },
+        {
+          path: 'privacy',
+          components: {p: Privacy}
+        },
+        {
+          path: 'settings',
+          components: {p: Settings}
+        },
+        {
+          path: 'data',
+          components: {p: Data}
+        },
+        {
+          path: 'advanced',
+          components: {p: Advanced}
+        },
+      ],
       meta: { requiredAuth: true }
     },
     {

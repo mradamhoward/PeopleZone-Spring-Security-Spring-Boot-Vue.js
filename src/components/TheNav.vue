@@ -78,7 +78,7 @@
             <router-link to="/pay" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Pay</router-link>
             <router-link to="/search?q=" v-if="loggedIn" class="menu-item green" @click="closeMenu()">All Persons</router-link>
             <router-link to="/register" v-if="loggedIn" class="menu-item red" @click="closeMenu()">Sign Up</router-link>
-             <router-link to="/profile" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Profile</router-link>
+             <router-link to="/profile/account" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Profile</router-link>
             <router-link to="/person/add" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Add Person</router-link>
             <router-link to="/upload/file" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Upload File</router-link>
             <router-link to="/logout" v-if="loggedIn" class="menu-item red" @click="closeMenu()">Logout</router-link>
@@ -183,15 +183,15 @@ export default {
     display: block;
     width: 100% - 30px;
     height: 40px;
-    background-color:cornflowerblue;
-    color: white;
+    background-color:white;
+    color: black;
     text-decoration: none;
     line-height: 2.5;
     padding-left: 30px;
-    border-bottom: 1px solid darkgrey;
 }
 .side-item:hover{
-    background-color: #bbb;
+    background-color: blue;
+    color: white;
 }
 .menu{
     height: 320px;

@@ -131,14 +131,7 @@ export default {
         height: 1250px;
         width: 100%;
     }
-.selects{
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-    width: 800px;
-    margin-right: auto;
-    margin-left: auto;
-}
+
 #numResults, #sort{
     width: 30%;
     height: 45px;
@@ -152,11 +145,12 @@ export default {
 #sort{
      margin-right: auto;
 }
-.numr{
-   
-    margin-left: auto;
-}
 
+
+.sortby{
+    color: white;
+    margin: auto 5px;  
+}
     .pagination {
     display: inline-block;
     margin: 350px auto 0 auto;
@@ -171,6 +165,8 @@ export default {
       width: 50%;
       height: 50px;
   }
+
+
   
   .pagination a {
     border-radius: 2px;
@@ -194,19 +190,100 @@ export default {
     width: 90%;
     height: 300px;
     border-radius: 5px;
-    background-color: #f2f2f2;
     padding: 0 15px;
-    border-bottom: 1px solid grey;
+    border: 1px solid grey;
 }
 
-.grid{
+
+  @media only screen and (max-width: 768px){
+      .grid{
+    width: 98%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    gap: 5px;
+    margin: 0 auto;
+      }
+    .selects{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 25px;
+    width: 800px;
+    margin-right: auto;
+    }
+
+
+  label{
+      color: white;
+  }
+
+  #asc{
+  }
+
+      .numr{
+   color: white;
+   margin-right: 5px;
+}
+
+
+}
+
+  
+
+  
+
+  @media only screen and (min-width: 769px){
+      .grid{
+    width: 98%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    margin: 0 auto;
+}
+  .selects{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 25px;
+    width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    }
+
+
+  label{
+      color: white;
+      margin: auto 5px;
+  }
+  
+    .numr{
+   color: white;
+   margin-right: 5px;
+    margin-left: auto;
+}
+
+
+  #asc{
+      margin: auto 5px;
+  }
+  }
+
+    @media only screen and (min-width: 1200px){
+      .grid{
     width: 98%;
     height: 100%;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 25% 25% 25% 25%;
-    gap: 10px;
+    gap: 5px;
+    margin: 0 auto;
 }
+
+  }
+
 
 .vertical-basic-info{
     width: 50%;
@@ -214,6 +291,7 @@ export default {
     display: inline-flex;   
     justify-content: space-between;
     flex-direction: column;
+    color: white;
 }
 
 .firstName{

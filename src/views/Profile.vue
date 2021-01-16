@@ -5,6 +5,18 @@
         <strong>{{currentUser.username}}</strong> Profile
       </h3>
     </header>
+
+    <ul class="tabs">
+      <li class="tab"><router-link class="tab-link" to="/profile/account"><i class="fas fa-users"></i> Account</router-link></li>
+      <li class="tab"><router-link class="tab-link" to="/profile/privacy"><i class="fas fa-user-secret"></i> Privacy</router-link></li>
+      <li class="tab"><router-link class="tab-link" to="/profile/settings"><i class="fas fa-cog"></i> Settings</router-link></li>
+      <li class="tab"><router-link class="tab-link" to="/profile/data"><i class="fas fa-database"></i> Data</router-link></li>
+      <li class="tab"><router-link class="tab-link" to="/profile/advanced"><i class="fas fa-plus"></i> Advanced</router-link></li>
+    </ul>
+
+    <router-view name="p"></router-view>
+
+    <!--
     <p>
       <strong>Token:</strong>
       {{currentUser.accessToken.substring(0, 20)}} ... {{currentUser.accessToken.substr(currentUser.accessToken.length - 20)}}
@@ -21,8 +33,9 @@
     <ul>
       <li v-for="(role,index) in currentUser.roles" :key="index">{{role}}</li>
     </ul>
+    -->
     
-   <router-link to="/logout" class="link">Logout</router-link>
+ 
   </div>
 
 </template>
@@ -65,6 +78,21 @@ h3{
 
 p{
 
+}
+
+ul.tabs{
+  display: flex;
+  margin: 0 auto;
+  justify-items:center;
+  justify-content: space-between;
+  width: 90%;
+
+}
+
+ul.tabs li a {
+  text-decoration: none;
+  color: black;
+  font-size: 16pt;
 }
 
 ul {

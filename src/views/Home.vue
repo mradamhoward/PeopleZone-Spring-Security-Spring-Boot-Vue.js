@@ -1,4 +1,5 @@
 <template>
+<div class="con">
  <vue-particles color="#dedede"
  :particleOpacity="0.7"
         :particlesNumber="80"
@@ -13,13 +14,13 @@
         :hoverEffect="true"
         hoverMode="grab"
         :clickEffect="true"
-        clickMode="push"></vue-particles>
+        clickMode="push" style="width: 100%; height: 100vh;"></vue-particles>
 
         <div class="intro">  
             <h3>The people's database</h3>
             <p>Find out more about people</p>
         </div>
-      
+      </div>
 </template>
 
 <script>
@@ -58,7 +59,6 @@ export default {
 </script>
 
 <style scoped>
-
 header{
   width: 80%;
   height: 600px;
