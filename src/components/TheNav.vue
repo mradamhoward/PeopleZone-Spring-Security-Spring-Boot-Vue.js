@@ -77,7 +77,7 @@
             <router-link to="/" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Home</router-link>
             <router-link to="/pay" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Pay</router-link>
             <router-link to="/search?q=" v-if="loggedIn" class="menu-item green" @click="closeMenu()">All Persons</router-link>
-            <router-link to="/register" v-if="loggedIn" class="menu-item red" @click="closeMenu()">Sign Up</router-link>
+            <router-link to="/person/1" v-if="loggedIn" class="menu-item red" @click="closeMenu()">Export</router-link>
              <router-link to="/profile/account" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Profile</router-link>
             <router-link to="/person/add" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Add Person</router-link>
             <router-link to="/upload/file" v-if="loggedIn" class="menu-item green" @click="closeMenu()">Upload File</router-link>
@@ -198,7 +198,7 @@ export default {
     width: 200px;
     border-radius: 5px;
     background-color: white;
-    position: fixed;
+    position: absolute;
     right: 10px;
     top: 80px;
     border: 1px solid darkgray;
@@ -209,7 +209,7 @@ export default {
     width: 200px;
     border-radius: 5px;
     background-color: white;
-    position: fixed;
+    position: absolute;
     right: 10px;
     top: 80px;
     border: 1px solid darkgray;

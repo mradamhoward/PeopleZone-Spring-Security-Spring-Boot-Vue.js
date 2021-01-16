@@ -86,13 +86,13 @@ ul.tabs{
   justify-items:center;
   justify-content: space-between;
   width: 90%;
-
 }
 
 ul.tabs li a {
   text-decoration: none;
   color: black;
   font-size: 16pt;
+    padding: 10px;
 }
 
 ul {
@@ -114,5 +114,12 @@ list-style: none;
 
 ul, p, h3{
   font-family: Arial, Helvetica, sans-serif;
+}
+
+a.router-link-active{
+  border-radius: 5px;
+  color: blue !important;
+  border: 2px solid blue;
+  font-weight: bold;
 }
 </style>
